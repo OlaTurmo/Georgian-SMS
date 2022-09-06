@@ -25,10 +25,12 @@ class _MyAppState extends State<MyApp> {
       if (value) {
         PlatformChannel().smsStream().listen((event) {
           sms = event;
+          data();
           setState(() {});
         });
       }
     });
+    data();
   }
 
   Future<bool> getPermission() async {
@@ -43,6 +45,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+  Translation? translation;
   void data() async {
     String gfg = "rs.ge (s/n an p/n) 305516536: 8516 kods vada gasdis 5 wuTSi";
     String result = gfg;
@@ -132,51 +135,77 @@ class _MyAppState extends State<MyApp> {
     final input = gfg;
 
     // Passing the translation to a variable
-    var translation = await translator.translate(input, from: 'ka', to: 'en');
-
+    Translation trans = await translator.translate(input, from: 'ka', to: 'en');
+    setState(() {
+      translation = trans;
+    });
     // You can also call the extension method directly on the input
     // print('Translated: ${await input.translate(to: 'en')}');
-    print("translation: $translation");
   }
 
   @override
   Widget build(BuildContext context) {
-    data();
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Center(child: Text('SMS Reader')),
-          backgroundColor: Colors.greenAccent,
+          backgroundColor:  const Color(0xff343351),
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                'Incoming message:',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.greenAccent),
-              ),
-              const SizedBox(height: 18),
-              Text(
-                sms,
-                style: const TextStyle(fontSize: 18, color: Colors.blue),
-                const Text(
-                'Translated message:',
-                style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.greenAccent),
-              ),
-              const SizedBox(height: 18),
-              Text(
-                 print("translation: $translation"),
-                style: const TextStyle(fontSize: 18, color: Colors.blue),
-              ),
-            ],
-          ),
+          child: translation == null
+              ? const CircularProgressIndicator()
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox.fromSize(),
+                    Column(
+                      children: [
+                        const Text(
+                          'Incoming message:',
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color:  Color(0xff343351)),
+                        ),
+                        const SizedBox(height: 18),
+                        Text(
+                          sms,
+                          style:
+                              const TextStyle(fontSize: 18, color:Colors.blue),
+                        ),
+                        const SizedBox(
+                          height: 18,
+                        ),
+                        const Text(
+                          "Translated message:",
+                          style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color:  Color(0xff343351)),
+                        ),
+                        const SizedBox(height: 18),
+                        translation != null
+                            ? Text(
+                                translation!.text.toString(),
+                                style: const TextStyle(
+                                    fontSize: 18, color:Colors.blue),
+                              )
+                            : SizedBox.fromSize(),
+                      ],
+                    ),
+                    const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child: Text(
+                        'Based on access_incoming_sms Copyright (c) 2022 Gülsen Keskin',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
         ),
       ),
     );
