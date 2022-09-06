@@ -28,12 +28,12 @@ class _MyAppState extends State<MyApp> {
           data();
           
           
-              String gfg = "";
+    String gfg = "";
     String result = gfg;
-    gfg = sms;
+    gfg = event;
 
-    print(gfg.toLowerCase());
-    gfg = result;
+    
+    gfg = gfg.toLowerCase();
 
     result = gfg.replaceAll("TS", "ც");
     gfg = result;
@@ -110,7 +110,7 @@ class _MyAppState extends State<MyApp> {
     result = gfg.replaceAll("h", "ჰ");
     gfg = result;
 
-    print(gfg);
+    //print(gfg);
 
     final translator = GoogleTranslator();
     final input = gfg;
