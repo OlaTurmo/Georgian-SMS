@@ -26,28 +26,9 @@ class _MyAppState extends State<MyApp> {
         PlatformChannel().smsStream().listen((event) {
           sms = event;
           data();
-          setState(() {});
-        });
-      }
-    });
-    data();
-  }
-
-  Future<bool> getPermission() async {
-    if (await Permission.sms.status == PermissionStatus.granted) {
-      return true;
-    } else {
-      if (await Permission.sms.request() == PermissionStatus.granted) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }
-
-  Translation? translation;
-  void data() async {
-    String gfg = "rs.ge (s/n an p/n) 305516536: 8516 kods vada gasdis 5 wuTSi";
+          
+          
+              String gfg = "";
     String result = gfg;
     gfg = sms;
 
@@ -138,6 +119,32 @@ class _MyAppState extends State<MyApp> {
     Translation trans = await translator.translate(input, from: 'ka', to: 'en');
     setState(() {
       translation = trans;
+          
+          
+          
+          
+          setState(() {});
+        });
+      }
+    });
+    data();
+  }
+
+  Future<bool> getPermission() async {
+    if (await Permission.sms.status == PermissionStatus.granted) {
+      return true;
+    } else {
+      if (await Permission.sms.request() == PermissionStatus.granted) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  Translation? translation;
+  void data() async {
+
     });
     // You can also call the extension method directly on the input
     // print('Translated: ${await input.translate(to: 'en')}');
