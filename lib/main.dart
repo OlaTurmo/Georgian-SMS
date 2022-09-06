@@ -47,7 +47,6 @@ class _MyAppState extends State<MyApp> {
 
   Translation? translation;
   void data() async {
-    
     String gfg = sms;
 
     final translator = GoogleTranslator();
@@ -72,56 +71,55 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox.fromSize(),
-                    Column(
-                      children: [
-                        const Text(
-                          'Incoming message:',
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff343351)),
-                        ),
-                        const SizedBox(height: 18),
-                        Text(
-                          sms,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox.fromSize(),
+              Column(
+                children: [
+                  const Text(
+                    'Incoming message:',
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff343351)),
+                  ),
+                  const SizedBox(height: 18),
+                  Text(
+                    sms,
+                    style: const TextStyle(fontSize: 18, color: Colors.blue),
+                  ),
+                  const SizedBox(
+                    height: 18,
+                  ),
+                  const Text(
+                    "Translated message:",
+                    style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xff343351)),
+                  ),
+                  const SizedBox(height: 18),
+                  translation != null
+                      ? Text(
+                          translation!.text.toString(),
                           style:
                               const TextStyle(fontSize: 18, color: Colors.blue),
-                        ),
-                        const SizedBox(
-                          height: 18,
-                        ),
-                        const Text(
-                          "Translated message:",
-                          style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xff343351)),
-                        ),
-                        const SizedBox(height: 18),
-                        translation != null
-                            ? Text(
-                                translation!.text.toString(),
-                                style: const TextStyle(
-                                    fontSize: 18, color: Colors.blue),
-                              )
-                            : SizedBox.fromSize(),
-                      ],
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Text(
-                        'Based on access_incoming_sms Copyright (c) 2022 Gülsen Keskin',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
-                  ],
+                        )
+                      : SizedBox.fromSize(),
+                ],
+              ),
+              const Padding(
+                padding: EdgeInsets.all(12.0),
+                child: Text(
+                  'Based on access_incoming_sms Copyright (c) 2022 Gülsen Keskin',
+                  style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.black,
+                  ),
                 ),
+              ),
+            ],
+          ),
         ),
       ),
     );
