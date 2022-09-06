@@ -105,7 +105,11 @@ class _MyAppState extends State<MyApp> {
                           style:
                               const TextStyle(fontSize: 18, color: Colors.blue),
                         )
-                      : SizedBox.fromSize(),
+                      : Text(
+                          sms,
+                          style:
+                              const TextStyle(fontSize: 18, color: Colors.blue),
+                        ),
                 ],
               ),
               const Padding(
