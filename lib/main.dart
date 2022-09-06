@@ -50,9 +50,8 @@ class _MyAppState extends State<MyApp> {
   String gfg = "";
 
   void data() async {
-    // String gfg = sms;
-    gfg =
-        "აბონენთის N: 1794794; სახელი გვარი: ოლა Tურმო; TარიRი: 31-AUG-22; სულ გადასახდელია: -53.41 ლარი; ცინა ჩვენება: 30146; 29-JUL-22; ახალი ჩვენება: 30278; 29-AUG-22; მიმდინარე ხარჯი: 132 ქვთ/სT ; მიმდინარე ხარჯი: 29.11 ლარი ; თარიფი: 0.2205302;";
+    String gfg = sms;
+   
     result = gfg.replaceAll("TS", "ც");
     gfg = result;
     result = gfg.replaceAll("ts", "ც");
