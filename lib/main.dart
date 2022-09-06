@@ -163,6 +163,17 @@ class _MyAppState extends State<MyApp> {
               Text(
                 sms,
                 style: const TextStyle(fontSize: 18, color: Colors.blue),
+                const Text(
+                'Translated message:',
+                style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.greenAccent),
+              ),
+              const SizedBox(height: 18),
+              Text(
+                 print("translation: $translation"),
+                style: const TextStyle(fontSize: 18, color: Colors.blue),
               ),
             ],
           ),
